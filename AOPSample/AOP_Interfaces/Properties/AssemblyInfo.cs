@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AOPSampleWinForm")]
+[assembly: AssemblyTitle("AOP_Interfaces")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AOPSampleWinForm")]
+[assembly: AssemblyProduct("AOP_Interfaces")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("68d4250d-7a90-4b07-9588-137da55fc447")]
+[assembly: Guid("f6077088-d529-46fc-857d-8524fe3c6756")]
 
 // Version information for an assembly consists of the following four values:
 //
