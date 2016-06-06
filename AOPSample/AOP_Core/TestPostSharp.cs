@@ -9,12 +9,11 @@ namespace AOP_PostSharp
 {
     public class TestPostSharp
     {
-        public static string Output {get; set;}
-
         [Serializable]
         public class TraceAttribute : OnMethodBoundaryAspect
         {
             private StringBuilder sb { get; set; }
+            public static string Output { get; set;}
 
             public override void OnEntry(MethodExecutionArgs eventArgs)
             {

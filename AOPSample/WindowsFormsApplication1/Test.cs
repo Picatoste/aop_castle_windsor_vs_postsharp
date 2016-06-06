@@ -11,8 +11,10 @@ using AOP_PostSharp;
 
 using Trace = AOP_PostSharp.TestPostSharp.TraceAttribute;
 using HandleException = AOP_PostSharp.TestPostSharp.HandleExceptionAttribute;
+using LoggingInterceptor = AOP_CastleWindsor.TestWindsor.LoggingInterceptor;
 using Castle.Windsor;
 using Castle.MicroKernel.Registration;
+using AOP_Core;
 
 
 namespace AOPSampleWinForm
@@ -22,35 +24,35 @@ namespace AOPSampleWinForm
 
         string output {get; set;}
 
-        public interface ISmsSender
-        {
-            int Send(string to, string msg);
-        }
+        //public interface ISmsSender
+        //{
+        //    int Send(string to, string msg);
+        //}
 
 
 
-        [Interceptor("Trace")]
-        public class SmsSender : ISmsSender
-        {
-            public int Send(string to, string msg)
-            {
-                if (msg.Length > 160)
-                    throw new ArgumentException("too long", "msg");
-                return to.Length;
-            }
-        }
+        ////[Interceptor("Trace")]
+        ////public class SmsSender : ISmsSender
+        ////{
+        ////    public int Send(string to, string msg)
+        ////    {
+        ////        if (msg.Length > 160)
+        ////            throw new ArgumentException("too long", "msg");
+        ////        return to.Length;
+        ////    }
+        ////}
 
-        [HandleException(typeof(ArgumentException), typeof(ArgumentException), "msg Description")]
-        [Trace]
-        public class SmsSender2 
-        {
-            public int Send(string to, string msg)
-            {
-                if (msg.Length > 160)
-                    throw new ArgumentException("too long", "msg");
-                return to.Length;
-            }
-        }
+        //[HandleException(typeof(ArgumentException), typeof(ArgumentException), "msg Description")]
+        //[Trace]
+        //public class SmsSender : ISmsSender
+        //{
+        //    public int Send(string to, string msg)
+        //    {
+        //        if (msg.Length > 160)
+        //            throw new ArgumentException("too long", "msg");
+        //        return to.Length;
+        //    }
+        //}
 
 
 
@@ -64,12 +66,12 @@ namespace AOPSampleWinForm
 
             txtOutput.AppendTextLine("POSTSHARP TEST");
             txtOutput.AppendTextLine("-------------------");
-            SmsSender2 oSms = new SmsSender2();
+            SmsSender oSms = new SmsSender();
             oSms.Send("Hola mundo", "Hola mundo");
             txtOutput.AppendTextLine("RESULT:");
-            txtOutput.AppendTextLine(TestPostSharp.Output);
+            txtOutput.AppendTextLine(Trace.Output);
             txtOutput.AppendTextLine("-------------------");
-            TestPostSharp.Output = "";
+            Trace.Output = "";
 
         }
 
@@ -100,9 +102,9 @@ namespace AOPSampleWinForm
             ISmsSender oSms = container.Resolve<ISmsSender>();
             oSms.Send("Hola mundo", "Hola mundo");
             txtOutput.AppendTextLine("RESULT:");
-            txtOutput.AppendTextLine(TestWindsor.Output);
+            txtOutput.AppendTextLine(LoggingInterceptor.Output);
             txtOutput.AppendTextLine("-------------------");
-            TestWindsor.Output = "";
+            LoggingInterceptor.Output = "";
         }
 
     }

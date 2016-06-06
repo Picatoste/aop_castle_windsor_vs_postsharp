@@ -91,13 +91,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AOP_CastleWindsor\AOP_CastleWindsor.csproj">
-      <Project>{9b6c8395-bd7f-44ff-8871-bc776baf729b}</Project>
-      <Name>AOP_CastleWindsor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AOP_PostSharp\AOP_PostSharp.csproj">
-      <Project>{361b0d96-9d0c-499e-90db-09eff3ca0891}</Project>
-      <Name>AOP_PostSharp</Name>
+    <ProjectReference Include="..\AOP_Core\AOP_Core.csproj">
+      <Project>{9580430f-cd18-469a-b3fd-6a0f834020ce}</Project>
+      <Name>AOP_Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
