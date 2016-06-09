@@ -1,4 +1,5 @@
-﻿using Castle.DynamicProxy;
+﻿using AOP_Core;
+using Castle.DynamicProxy;
 using Castle.MicroKernel.Registration;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,7 @@ namespace AOP_CastleWindsor
         public class LoggingInterceptor : IInterceptor
         {
 
-            public static string Output { get; set; }
-
+            
             public void Intercept(IInvocation invocation)
             {
                 try
@@ -39,18 +39,18 @@ namespace AOP_CastleWindsor
                         sb.Append(invocation.Arguments[i]);
                     }
                     sb.Append(")");
-                    Output += String.Format("{0}\n", sb);
+                    TraceFile.Output += String.Format("{0}\n", sb);
                     //FileRollerTrace.TraceMessage(System.Diagnostics.TraceEventType.Verbose, String.Format("{0}", sb), null);
 
 
                     invocation.Proceed();
 
-                    Output += String.Format("Result of {0} is: {1}\n", sb, invocation.ReturnValue);
+                    TraceFile.Output += String.Format("Result of {0} is: {1}\n", sb, invocation.ReturnValue);
                     //FileRollerTrace.TraceMessage(System.Diagnostics.TraceEventType.Verbose, String.Format("Result of {0} is: {1}", sb, invocation.ReturnValue), null);
                 }
                 catch (Exception e)
                 {
-                    Output += e.Message;
+                    TraceFile.Output += e.Message;
                     //FileRollerTrace.TraceMessage(System.Diagnostics.TraceEventType.Error, e.Message, null);
                     throw;
                 }

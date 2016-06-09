@@ -1,4 +1,5 @@
-﻿using PostSharp.Aspects;
+﻿using AOP_Core;
+using PostSharp.Aspects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,6 @@ namespace AOP_PostSharp
         public class TraceAttribute : OnMethodBoundaryAspect
         {
             private StringBuilder sb { get; set; }
-            public static string Output { get; set;}
 
             public override void OnEntry(MethodExecutionArgs eventArgs)
             {
@@ -28,7 +28,7 @@ namespace AOP_PostSharp
                     sb.Append(eventArgs.Arguments[i]);
                 }
                 sb.Append(")");
-                Output += (String.Format("{0}\n", sb));
+                TraceFile.Output += (String.Format("{0}\n", sb));
             }
 
             public override void OnSuccess(MethodExecutionArgs args)
@@ -38,12 +38,12 @@ namespace AOP_PostSharp
 
             public override void OnExit(MethodExecutionArgs eventArgs)
             {
-                Output += (String.Format("Result of {0} is: {1}\n", sb, eventArgs.ReturnValue));
+                TraceFile.Output += (String.Format("Result of {0} is: {1}\n", sb, eventArgs.ReturnValue));
             }
 
             public override void OnException(MethodExecutionArgs args)
             {
-                Output += args.Exception.Message;
+                TraceFile.Output += args.Exception.Message;
             }
         }
 

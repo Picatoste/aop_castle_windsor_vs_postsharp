@@ -18,10 +18,10 @@ namespace AOP_Core
         int Send(string to, string msg);
     }
 
-    [Interceptor("Trace")]
-    [HandleException(typeof(ArgumentException), typeof(ArgumentException), "msg Description")]
-    [Trace]
-    public class SmsSender : ISmsSender
+    //[HandleException(typeof(ArgumentException), typeof(ArgumentException), "msg Description")]
+
+    [Interceptor("Trace")]    
+    public class SmsSenderCastle : ISmsSender
     {
         public int Send(string to, string msg)
         {
@@ -30,4 +30,53 @@ namespace AOP_Core
             return to.Length;
         }
     }
+
+    [Trace]
+    public class SmsSenderPostSharp : ISmsSender
+    {
+        public int Send(string to, string msg)
+        {
+            if (msg.Length > 160)
+                throw new ArgumentException("too long", "msg");
+            return to.Length;
+        }
+    }
+
+    //public class SmsSender3
+    //{
+    //    public int Send(string to, string msg)
+    //    {
+    //        if (msg.Length > 160)
+    //            throw new ArgumentException("too long", "msg");
+    //        return to.Length;
+    //    }
+    //}
+
+
+
+    public class SmsSenderWithoutAOP : ISmsSender
+    {
+
+        public int Send(string to, string msg)
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder("SmsSender.Send(to, msg)");
+                TraceFile.Output += (String.Format("{0}\n", sb));
+
+                if (msg.Length > 160)
+                    throw new ArgumentException("too long", "msg");
+
+                TraceFile.Output += (String.Format("Result of {0} is: {1}\n", sb, to.Length));
+                return to.Length;
+
+            }
+            catch (ArgumentException ex)
+            {
+                TraceFile.Output += ex.Message;
+                throw new ArgumentException("error!", ex.Message);
+            }
+        }
+    }
+
 }

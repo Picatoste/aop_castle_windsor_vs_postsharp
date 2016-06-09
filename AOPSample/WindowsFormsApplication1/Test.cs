@@ -66,12 +66,12 @@ namespace AOPSampleWinForm
 
             txtOutput.AppendTextLine("POSTSHARP TEST");
             txtOutput.AppendTextLine("-------------------");
-            SmsSender oSms = new SmsSender();
+            SmsSenderPostSharp oSms = new SmsSenderPostSharp();
             oSms.Send("Hola mundo", "Hola mundo");
             txtOutput.AppendTextLine("RESULT:");
-            txtOutput.AppendTextLine(Trace.Output);
+            txtOutput.AppendTextLine(TraceFile.Output);
             txtOutput.AppendTextLine("-------------------");
-            Trace.Output = "";
+            TraceFile.Output = "";
 
         }
 
@@ -89,7 +89,7 @@ namespace AOPSampleWinForm
                     _container.Install(new AOP_CastleWindsor.TestWindsor.Installers());
 
                     //Concret registers
-                    _container.Register(Component.For<ISmsSender>().ImplementedBy<SmsSender>().LifestyleTransient());
+                    _container.Register(Component.For<ISmsSender>().ImplementedBy<SmsSenderCastle>().LifestyleTransient());
                 }
                 return _container;
             }
@@ -102,9 +102,9 @@ namespace AOPSampleWinForm
             ISmsSender oSms = container.Resolve<ISmsSender>();
             oSms.Send("Hola mundo", "Hola mundo");
             txtOutput.AppendTextLine("RESULT:");
-            txtOutput.AppendTextLine(LoggingInterceptor.Output);
+            txtOutput.AppendTextLine(TraceFile.Output);
             txtOutput.AppendTextLine("-------------------");
-            LoggingInterceptor.Output = "";
+            TraceFile.Output = "";
         }
 
     }
