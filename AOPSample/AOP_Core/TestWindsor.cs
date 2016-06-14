@@ -40,18 +40,15 @@ namespace AOP_CastleWindsor
                     }
                     sb.Append(")");
                     TraceFile.Output += String.Format("{0}\n", sb);
-                    //FileRollerTrace.TraceMessage(System.Diagnostics.TraceEventType.Verbose, String.Format("{0}", sb), null);
 
 
                     invocation.Proceed();
 
                     TraceFile.Output += String.Format("Result of {0} is: {1}\n", sb, invocation.ReturnValue);
-                    //FileRollerTrace.TraceMessage(System.Diagnostics.TraceEventType.Verbose, String.Format("Result of {0} is: {1}", sb, invocation.ReturnValue), null);
                 }
                 catch (Exception e)
                 {
                     TraceFile.Output += e.Message;
-                    //FileRollerTrace.TraceMessage(System.Diagnostics.TraceEventType.Error, e.Message, null);
                     throw;
                 }
             }

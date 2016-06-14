@@ -10,8 +10,6 @@ namespace UnitTestAOPSample
     public class TestAOPSample
     {
 
-      
-
         #region "CastleWindsor"
 
         [TestCategory("CastleWindsor"), TestMethod]
@@ -106,7 +104,6 @@ namespace UnitTestAOPSample
         }
 
         #endregion
-
 
 
         #region "PostSharp"

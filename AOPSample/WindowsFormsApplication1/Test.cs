@@ -24,37 +24,7 @@ namespace AOPSampleWinForm
 
         string output {get; set;}
 
-        //public interface ISmsSender
-        //{
-        //    int Send(string to, string msg);
-        //}
-
-
-
-        ////[Interceptor("Trace")]
-        ////public class SmsSender : ISmsSender
-        ////{
-        ////    public int Send(string to, string msg)
-        ////    {
-        ////        if (msg.Length > 160)
-        ////            throw new ArgumentException("too long", "msg");
-        ////        return to.Length;
-        ////    }
-        ////}
-
-        //[HandleException(typeof(ArgumentException), typeof(ArgumentException), "msg Description")]
-        //[Trace]
-        //public class SmsSender : ISmsSender
-        //{
-        //    public int Send(string to, string msg)
-        //    {
-        //        if (msg.Length > 160)
-        //            throw new ArgumentException("too long", "msg");
-        //        return to.Length;
-        //    }
-        //}
-
-
+       
 
         public TestForm()
         {

@@ -42,18 +42,6 @@ namespace AOP_Core
         }
     }
 
-    //public class SmsSender3
-    //{
-    //    public int Send(string to, string msg)
-    //    {
-    //        if (msg.Length > 160)
-    //            throw new ArgumentException("too long", "msg");
-    //        return to.Length;
-    //    }
-    //}
-
-
-
     public class SmsSenderWithoutAOP : ISmsSender
     {
 
