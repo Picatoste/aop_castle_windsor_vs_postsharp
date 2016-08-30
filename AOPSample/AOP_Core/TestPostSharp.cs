@@ -45,7 +45,7 @@ namespace AOP_PostSharp
             {
                 TraceFile.Output += args.Exception.Message;
             }
-        }
+        }  
 
 
         [Serializable]
